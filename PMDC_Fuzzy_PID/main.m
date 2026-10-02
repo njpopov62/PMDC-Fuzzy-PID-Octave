@@ -143,61 +143,83 @@ printf('  Minimum control = %.6f V\n', min(u_fuzzy));
 % FIGURE 1
 %
 % Full step response.
+%
+% This section reproduces the plotting section of the original Python
+% program as closely as possible.
 %--------------------------------------------------------------------------
-figure(1);
+
+figure(1, 'units', 'inches', 'position', [1 1 7.5 4.5]);
 
 plot(t, y_pid, '--', 'LineWidth', 1.0);
 hold on;
 
 plot(t_fuzzy, y_fuzzy, 'LineWidth', 1.8);
 
-plot(t, ones(size(t)), ':', 'LineWidth', 1.0);
+plot(t, ones(size(t)), 'LineWidth', 0.8);
 
-grid on;
+xlabel('Time [s]');
+ylabel('Angular velocity [rad/s]');
 
-xlabel('Time (s)');
-ylabel('Angular speed');
-
-title('Fuzzy PID vs Conventional PID - PMDC Motor');
+title('DC Motor Step Response: PID vs Fuzzy PID');
 
 legend('Conventional PID', ...
        'Fuzzy PID', ...
        'Reference', ...
-       'Location', 'best');
+       'Location', 'northeast');
+
+grid on;
 
 xlim([0 t(end)]);
 
-print('fuzzy_pid_step_response.png', '-dpng', '-r150');
+% Approximate Matplotlib tight_layout()
+set(gcf, 'paperunits', 'inches');
+set(gcf, 'papersize', [7.5 4.5]);
+set(gcf, 'paperposition', [0 0 7.5 4.5]);
+
+print('fuzzy_pid_step_response.png', '-dpng', '-r200');
+
 
 %--------------------------------------------------------------------------
 % FIGURE 2
 %
 % Zoomed response, 0 to 0.35 seconds.
 %--------------------------------------------------------------------------
-figure(2);
 
-plot(t, y_pid, '--', 'LineWidth', 1.0);
+t_zoom_max = 0.35;
+
+idx_zoom = t <= t_zoom_max;
+
+figure(2, 'units', 'inches', 'position', [1 1 7.5 4.5]);
+
+plot(t(idx_zoom), y_pid(idx_zoom), '--', 'LineWidth', 1.0);
 hold on;
 
-plot(t_fuzzy, y_fuzzy, 'LineWidth', 1.8);
+plot(t_fuzzy(idx_zoom), y_fuzzy(idx_zoom), ...
+     'LineWidth', 1.8);
 
-plot(t, ones(size(t)), ':', 'LineWidth', 1.0);
+plot(t(idx_zoom), ones(size(t(idx_zoom))), ...
+     'LineWidth', 0.8);
 
-grid on;
+xlabel('Time [s]');
+ylabel('Angular velocity [rad/s]');
 
-xlabel('Time (s)');
-ylabel('Angular speed');
-
-title('Fuzzy PID vs Conventional PID - Zoomed');
+title('Zoomed Transient (0–0.35 s): Overshoot Comparison');
 
 legend('Conventional PID', ...
        'Fuzzy PID', ...
        'Reference', ...
-       'Location', 'best');
+       'Location', 'northeast');
 
-xlim([0 0.35]);
+grid on;
 
-print('fuzzy_pid_zoomed.png', '-dpng', '-r150');
+xlim([0 t_zoom_max]);
+
+% Approximate Matplotlib tight_layout()
+set(gcf, 'paperunits', 'inches');
+set(gcf, 'papersize', [7.5 4.5]);
+set(gcf, 'paperposition', [0 0 7.5 4.5]);
+
+print('fuzzy_pid_zoomed.png', '-dpng', '-r200');
 
 %--------------------------------------------------------------------------
 % FINISHED
