@@ -1,0 +1,49 @@
+===============================================
+ Conventional PID simulation
+===============================================
+
+===============================================
+ Fuzzy PID simulation
+===============================================
+
+===============================================
+ PERFORMANCE RESULTS
+===============================================
+
+Conventional PID:
+  Rise time      = 0.265500 s
+  Overshoot      = 23.156596 %
+  Settling time  = 1.674200 s
+  ISE            = 0.176786
+  ITAE           = 0.160883
+
+Fuzzy PID:
+  Rise time      = 0.265500 s
+  Overshoot      = 21.162292 %
+  Settling time  = 1.707000 s
+  ISE            = 0.175571
+  ITAE           = 0.163605
+
+===============================================
+ FINAL SIMULATION VALUES
+===============================================
+
+Conventional PID:
+  Final speed     = 1.007625
+  Maximum speed   = 1.231566
+  Maximum control = 24.000000 V
+  Minimum control = 9.682140 V
+
+Fuzzy PID:
+  Final speed     = 1.008423
+  Maximum speed   = 1.211623
+  Maximum control = 24.000000 V
+  Minimum control = 9.716155 V
+
+===============================================
+ Simulation completed.
+===============================================
+
+Generated files:
+  fuzzy_pid_step_response.png
+  fuzzy_pid_zoomed.png

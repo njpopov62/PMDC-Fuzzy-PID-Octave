@@ -124,34 +124,37 @@ function [t, y, u_hist, ydot] = simulate_fuzzy_pid( ...
         % Control error
         error = omega_ref(k) - omega;
 
-        %------------------------------------------------------------------
-        % Normalize error
-        % Original Python:
-        %
-        % e_norm = np.clip(error/e_scale, -1, 1)
-        %------------------------------------------------------------------
-        e_norm = error / e_scale;
+	%----------------------------------------------------------------------
+	% Normalize error
+	%
+	% Original Python:
+	%
+	% e_norm = np.clip(error / max(e_scale, 1e-6), -1.0, 1.0)
+	%----------------------------------------------------------------------
 
-        if e_norm > 1
-            e_norm = 1;
-        elseif e_norm < -1
-            e_norm = -1;
-        end
+	e_norm = error / max(e_scale, 1e-6);
 
-        %------------------------------------------------------------------
+	if e_norm > 1
+	    e_norm = 1;
+	elseif e_norm < -1
+	    e_norm = -1;
+	end
+
+        %----------------------------------------------------------------------
         % Normalize error derivative
         %
         % Original Python:
         %
-        % de_norm = np.clip((-ydot)/de_scale, -1, 1)
-        %------------------------------------------------------------------
-        de_norm = (-ydot(k)) / de_scale;
+        % de_norm = np.clip((-ydot[k]) / max(de_scale, 1e-6), -1.0, 1.0)
+        %----------------------------------------------------------------------
 
-        if de_norm > 1
-            de_norm = 1;
-        elseif de_norm < -1
-            de_norm = -1;
-        end
+        de_norm = (-ydot(k)) / max(de_scale, 1e-6);
+
+	if de_norm > 1
+	    de_norm = 1;
+	elseif de_norm < -1
+	    de_norm = -1;
+	end
 
         %------------------------------------------------------------------
         % Fuzzy inference
