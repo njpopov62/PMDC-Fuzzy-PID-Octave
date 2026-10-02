@@ -30,14 +30,18 @@ function metrics = performance_metrics(t, y, y_final)
     % Find first sample where y >= 10% of final value
     idx10 = find(y >= 0.1*y_final, 1, 'first');
 
+    if isempty(idx10)
+        idx10 = 1;
+    end
+
     % Find first sample where y >= 90% of final value
     idx90 = find(y >= 0.9*y_final, 1, 'first');
 
-    if isempty(idx10) || isempty(idx90)
-        rise_time = NaN;
-    else
-        rise_time = t(idx90) - t(idx10);
+    if isempty(idx90)
+        idx90 = length(y);
     end
+
+    rise_time = max(t(idx90) - t(idx10), 0.0);
 
     %----------------------------------------------------------------------
     % Overshoot
