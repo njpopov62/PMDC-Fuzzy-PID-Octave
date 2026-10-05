@@ -1,0 +1,16 @@
+LTspice 26.1.1 for Windows
+Circuit: C:\users\suza\Documents\LTspice\Jig_Standalone_LTspice_PMDC_motor.net
+Start Time: Mon Oct  5 14:36:10 2026
+solver = Normal
+Maximum thread count: 4
+tnom = 27
+temp = 27
+method = trap
+.OP point found by inspection.
+.OP point found by inspection.
+Total elapsed time: 4.901 seconds.
+Total iterations: 1154829
+
+Files loaded:
+C:\users\suza\Documents\LTspice\Jig_Standalone_LTspice_PMDC_motor.net
+
