@@ -1,6 +1,18 @@
 LTspice 26.1.1 for Windows
 Circuit: C:\users\suza\Documents\LTspice\Jig_Standalone_LTspice_PMDC_motor.net
-Start Time: Mon Oct  5 14:36:10 2026
+Start Time: Mon Oct  5 17:24:06 2026
+    --- Expanded Netlist ---
+V1 V_arm 0 PULSE=(0,1,0,1e-12,1e-12,5,10) AC=(1,0)
+
+x1:E1 x1:V_e 0 O_spd 0 GAIN=0.01
+x1:B1 x1:T_iner 0 V=0.01*ddt(v(o_spd))
+x1:R1 x1:N001 V_arm R=1
+x1:L1 x1:N001 x1:V_e ic=0 Rser=0.001 INDUCTANCE=0.5
+x1:H1 x1:T_t 0 CONTROL=x1:E1 GAIN=0.01
+x1:E2 O_spd 0 x1:T_t x1:T_iner GAIN=10
+
+.end
+
 solver = Normal
 Maximum thread count: 4
 tnom = 27
@@ -8,7 +20,7 @@ temp = 27
 method = trap
 .OP point found by inspection.
 .OP point found by inspection.
-Total elapsed time: 4.901 seconds.
+Total elapsed time: 4.425 seconds.
 Total iterations: 1154829
 
 Files loaded:
