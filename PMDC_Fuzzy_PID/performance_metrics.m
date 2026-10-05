@@ -82,7 +82,7 @@ function metrics = performance_metrics(t, y, y_final)
     end
 
     if isempty(settling_idx)
-        settling_time = NaN;
+        settling_time = t(end);
     else
         settling_time = t(settling_idx);
     end
