@@ -1,6 +1,6 @@
 LTspice 26.1.1 for Windows
-Circuit: C:\users\suza\Documents\PMDC-Fuzzy-PID-Octave-main - GitHub\LTspice PMDC Motor Model\Jig_Standalone_LTspice_PMDC_motor.net
-Start Time: Thu Oct  8 03:43:57 2026
+Circuit: C:\users\suza\Documents\LTspice\Jig_Standalone_LTspice_PMDC_motor.net
+Start Time: Thu Oct  8 04:06:27 2026
     --- Expanded Netlist ---
 V1 V_arm 0 PULSE=(0,1,0,1e-12,1e-12,25,50) AC=(1,0)
 
@@ -34,11 +34,11 @@ method = trap
 .step varm=24
 .OP point found by inspection.
 .OP point found by inspection.
-Total elapsed time: 78.457 seconds.
+Total elapsed time: 79.564 seconds.
 Total iterations: 5324651
 
 Files loaded:
-C:\users\suza\Documents\PMDC-Fuzzy-PID-Octave-main - GitHub\LTspice PMDC Motor Model\Jig_Standalone_LTspice_PMDC_motor.net
+C:\users\suza\Documents\LTspice\Jig_Standalone_LTspice_PMDC_motor.net
 
 
 Measurement: o_spd_end
@@ -49,11 +49,11 @@ Measurement: o_spd_end
      4	2.39760231972	25
 
 Measurement: i_arm_end
-  step	I(V1)	at
-     1	-0.999001026154	25
-     2	-4.99500513077	25
-     3	-9.99001026154	25
-     4	-23.9760246277	25
+  step	-I(V1)	at
+     1	0.999001026154	25
+     2	4.99500513077	25
+     3	9.99001026154	25
+     4	23.9760246277	25
 
 Measurement: bemf_end
   step	V(x1:V_e)	at
